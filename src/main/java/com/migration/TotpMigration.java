@@ -85,6 +85,10 @@ public class TotpMigration {
 
             //Get access token (This method also use to refresh the access token, hence the method name)
             refreshToken();
+            if (accessToken == null || accessToken.isEmpty()) {
+                log.error("Error while getting access token");
+                return;
+            }
             getClaimDialectID();
             if (dialectId == null || dialectId.isEmpty()) {
                 log.error("Error while getting claim dialect ID");
@@ -122,6 +126,11 @@ public class TotpMigration {
                 byte[] newDecrypted = decryptNewWay(cipherMetaDataHolder.getCipherBase64Decoded());
                 String newDecryptedString = new String(newDecrypted);
                 log.info("Key decryption was successful for user: " + userName);
+
+                if (newDecryptedString == null || newDecryptedString.isEmpty()) {
+                    log.error("Error while decrypting the secret key for user: " + userName);
+                    continue;
+                }
 
                 // Send the second POST request with the access token
                 String id = getUserId(userName);
