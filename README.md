@@ -19,7 +19,7 @@ public static final String CIPHER_TRANSFORMATION = "AES/GCM/NoPadding";
 public static final String CIPHER_TRANSFORMATION_PROVIDER = "BC";
 public static final String DEFAULT_SYMMETRIC_CRYPTO_ALGORITHM = "AES";
 // Add the value of encryption.key in toml.
-public static final String SECRET = "03BAFEB27A8E871CAD83C5CD4E771DAB";
+public static final String SECRET = "<SYMMETRIC-KEY>";
 ```
 2. Run `mvn clean install`
 3. Run `java -jar totp-migration-<version>-jar-with-dependencies.jar` from `target/`
